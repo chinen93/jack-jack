@@ -37,6 +37,6 @@ export default class TaskDetails extends React.Component {
 
         <Text style={{ fontSize: 30 }}>{task.title}</Text>
       </View>
-    )
+    );
   }
 }

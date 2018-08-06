@@ -36,7 +36,7 @@ export default class Main extends React.Component {
 
   onPressRating = (index, value) => {
     const tasks = this.state.tasks;
-    
+
     tasks[index].value = value;
 
     this.setState({ tasks: tasks });
@@ -46,33 +46,33 @@ export default class Main extends React.Component {
     return (
       <View>
         <Text style={{ fontSize: 30 }}>Minhas Tarefas</Text>
-	<View style={{ flexDirection:'row' }}>
-	  <TouchableOpacity 
-	    onPress={() => this.props.navigation.navigate('NewTask', {
-	       appendToTasks: this.appendToTasks
-	    })}
-	    style={{ padding:10, backgroundColor:'grey' }}
- 	  >
-	    <Text style={{ color:'blue' }}>Nova Task</Text>
+        <View style={{ flexDirection:'row' }}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('NewTask', {
+               appendToTasks: this.appendToTasks
+            })}
+            style={{ padding:10, backgroundColor:'grey' }}
+          >
+            <Text style={{ color:'blue' }}>Nova Task</Text>
 
-	  </TouchableOpacity>
-	</View>
+          </TouchableOpacity>
+        </View>
         <FlatList
           extraData={this.state}
           data={this.state.tasks}
           renderItem={({ item, index }) => (
-	    <TouchableOpacity
-	      onPress={() => this.props.navigation.navigate('TaskDetails', {
-		  task: item,
-		  updateTasks: this.updateTasks
-	      })}
-	    >
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TaskDetails', {
+                  task: item,
+                  updateTasks: this.updateTasks
+              })}
+            >
               <Task
                 index={index}
-                title={item.title} 
-                ratValue={item.value} 
+                title={item.title}
+                ratValue={item.value}
                 onPressRating={this.onPressRating} />
-	    </TouchableOpacity>
+            </TouchableOpacity>
           )}
 
           keyExtractor={item => `${item.id}`}

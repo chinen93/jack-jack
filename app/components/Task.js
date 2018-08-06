@@ -15,7 +15,9 @@ export default class Task extends React.Component {
         <Rating
           taskIndex={index}
           ratValue={ratValue}
-          onPressRating={(index, value) => this.props.onPressRating(index, value)} />
+          onPressRating={
+            (index, value) => this.props.onPressRating(index, value)
+          } />
       </View>
     );
   }
