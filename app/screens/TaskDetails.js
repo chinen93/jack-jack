@@ -24,9 +24,30 @@ export default class TaskDetails extends React.Component {
       
   }
 
-  render () {
+  updateTask = (task, tasks) => {
+    const updateTasks = this.props.navigation.getParam('updateTasks');
+    updateTasks(tasks);
+
+    this.setState({ 
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      rating: task.rating,
+    });
+  }
+
+  async componentWillMount() {
     const task = this.props.navigation.getParam('task', {});
 
+    this.setState({ 
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      rating: task.rating,
+    });
+  }
+
+  render () {
     return (
       <View>
         <Text>Task Details</Text>
@@ -54,18 +75,21 @@ export default class TaskDetails extends React.Component {
         </View>
 
         {/* Informacoes da tarefa  */}
-        <Text style={{ fontSize: 30 }}>{task.title}</Text>
-        <Text style={{ fontSize: 20 }}>{task.description}</Text>
+        <Text style={{ fontSize: 30 }}>{this.state.title}</Text>
+        <Text style={{ fontSize: 20 }}>{this.state.description}</Text>
         <Rating 
-          taskIndex={task.id}
-          ratValue={task.rating}
+          taskIndex={this.state.id}
+          ratValue={this.state.rating}
           onPressRating={this.onPressRating} 
         />
 
         {/* Botao salvar alteracoes da tarefa */}
         <View>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('UpdateTask')}
+            onPress={() => this.props.navigation.navigate('UpdateTask', {
+                task: this.state,
+                updateTask: this.updateTask
+            })}
           >
             <Text style={{ color: 'blue' }}>Update</Text>
           </TouchableOpacity>

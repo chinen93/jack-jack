@@ -19,22 +19,29 @@ const styles = StyleSheet.create({
 
 export default class UpdateTask extends React.Component {
 
-  state  = {
-    title: '',
-    description: '',
-    rating: 1
+  async componentWillMount() {
+    const task = this.props.navigation.getParam('task', {});
+
+    this.setState({ 
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      rating: task.rating,
+    });
   }
+
 
   updateTask = async () => {
-    const appendToTasks = this.props.navigation.getParam('appendToTasks');
-    const task = this.state;
+    const callback = this.props.navigation.getParam('updateTask', {});
+    const taskToUpdate = this.state;
 
-    const updatedTask = await new MyStorage().add(task);
+    const tasks = await new MyStorage().update(taskToUpdate.id,
+                                               taskToUpdate);
 
-    appendToTasks(savedTask);
+    callback(taskToUpdate, tasks);
 
     this.props.navigation.goBack();
-  }
+  };
 
   render() {
       return (
@@ -52,13 +59,13 @@ export default class UpdateTask extends React.Component {
             <Text>Title: {this.state.title}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Title"
+              value={this.state.title}
               onChangeText={(text) => this.setState({title: text})}
             />
             <Text>Description: {this.state.description}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Description"
+              value={this.state.description}
               multiline = {true}
               numberOfLines ={4}
               onChangeText={(text) => this.setState({description: text})}

@@ -73,7 +73,7 @@ export default class MyStorage{
    Return: Array of Tasks
    */
   update = async (id, data) => {
-    
+
     const currentData = await this.load();
 
     currentData.forEach((element, index, array) => {

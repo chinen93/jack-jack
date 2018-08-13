@@ -67,6 +67,7 @@ export default class Main extends React.Component {
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('TaskDetails', {
+                  index: index,
                   task: item,
                   updateTasks: this.updateTasks
               })}
