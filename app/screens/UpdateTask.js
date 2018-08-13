@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class NewTask extends React.Component {
+export default class UpdateTask extends React.Component {
 
   state  = {
     title: '',
@@ -25,11 +25,11 @@ export default class NewTask extends React.Component {
     rating: 1
   }
 
-  saveTask = async () => {
+  updateTask = async () => {
     const appendToTasks = this.props.navigation.getParam('appendToTasks');
     const task = this.state;
 
-    const savedTask = await new MyStorage().add(task);
+    const updatedTask = await new MyStorage().add(task);
 
     appendToTasks(savedTask);
 
@@ -39,7 +39,7 @@ export default class NewTask extends React.Component {
   render() {
       return (
         <View>
-          <Text>New Task</Text>
+          <Text>Update Task</Text>
           {/* Botao para voltar */}
           <TouchableOpacity
             onPress={() => this.props.navigation.goBack()}
@@ -55,15 +55,12 @@ export default class NewTask extends React.Component {
               placeholder="Title"
               onChangeText={(text) => this.setState({title: text})}
             />
-            <Text>
-              Description: 
-              {this.state.description}
-            </Text>
+            <Text>Description: {this.state.description}</Text>
             <TextInput
               style={styles.input}
               placeholder="Description"
-              multiline={true}
-              numberOfLines={4}
+              multiline = {true}
+              numberOfLines ={4}
               onChangeText={(text) => this.setState({description: text})}
             />
             <Text>Rating: {this.state.rating}</Text>
@@ -74,12 +71,12 @@ export default class NewTask extends React.Component {
             />
           </View>
 
-          {/* Botao para salvar */}
+          {/* Botao para atualizar */}
           <TouchableOpacity
-            onPress={this.saveTask}
+            onPress={this.updateTask}
           >
           <Text />
-          <Text style={{fontSize:20}}>Save Task</Text>
+          <Text style={{fontSize:20}}>Update Task</Text>
           </TouchableOpacity>
 
         </View>

@@ -45,8 +45,10 @@ export default class Main extends React.Component {
   render() {
     return (
       <View>
-        <Text style={{ fontSize: 30 }}>Minhas Tarefas</Text>
-        <View style={{ flexDirection:'row' }}>
+        <Text style={{ fontSize: 30 }} >Minhas Tarefas</Text>
+
+        {/* Botao para criar nova tarefa */}
+        <View style={{ flexDirection:'row' }} >
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('NewTask', {
                appendToTasks: this.appendToTasks
@@ -57,6 +59,8 @@ export default class Main extends React.Component {
 
           </TouchableOpacity>
         </View>
+
+        {/* Lista de tarefas criadas  */}
         <FlatList
           extraData={this.state}
           data={this.state.tasks}
@@ -70,8 +74,9 @@ export default class Main extends React.Component {
               <Task
                 index={index}
                 title={item.title}
-                ratValue={item.value}
-                onPressRating={this.onPressRating} />
+                ratValue={item.rating}
+                onPressRating={this.onPressRating} 
+              />
             </TouchableOpacity>
           )}
 

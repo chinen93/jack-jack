@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import Main from '../screens/Main';
 import NewTask from '../screens/NewTask';
 import TaskDetails from '../screens/TaskDetails';
+import UpdateTask from '../screens/UpdateTask';
 
 export default class MainStackNavigation extends React.Component{
 
@@ -17,6 +18,9 @@ export default class MainStackNavigation extends React.Component{
     },
     TaskDetails: {
       screen: TaskDetails
+    },
+    UpdateTask: {
+      screen: UpdateTask
     }
   }, {
     initialRouteName: 'Main',

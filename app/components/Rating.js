@@ -25,14 +25,11 @@ export default class Rating extends React.Component {
     return result.map((val, i) => {
       return (
         <TouchableOpacity onPress={
-          () => this.props.onPressRating(this.props.taskIndex, i + 1)
-        }>
-          <Icon name={val === 1 ? 'star' : 'star-o'} />
-          {/*
-            <View style={
-              [styles.circle, val === 1 && { backgroundColor: 'black' }]
-            } />
-          */}
+            () => this.props.onPressRating(this.props.taskIndex, i + 1)
+          }
+        >
+          <Icon name={val === 1 ? 'star' : 'star-o'} 
+                size={25} />
         </TouchableOpacity>
       );
     });

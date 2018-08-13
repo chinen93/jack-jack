@@ -12,12 +12,13 @@ export default class Task extends React.Component {
       <View>
         <Text>{title}</Text>
 
-        <Rating
+        <Rating 
           taskIndex={index}
           ratValue={ratValue}
           onPressRating={
             (index, value) => this.props.onPressRating(index, value)
-          } />
+          } 
+        />
       </View>
     );
   }
