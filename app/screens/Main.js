@@ -42,6 +42,23 @@ export default class Main extends React.Component {
     this.setState({ tasks: tasks });
   }
 
+  renderSeparator = () => {
+    return (
+        <View
+          style={{
+            height: 1,
+            width: "86%",
+            backgroundColor: "#CED0CE",
+            marginLeft: "14%"
+          }}
+        />
+    );
+  };
+
+  renderHeader = () => {
+    return <SearchBar placeholder="Search" lightTheme round />;
+  };
+
   render() {
     return (
       <View>
@@ -80,6 +97,8 @@ export default class Main extends React.Component {
               />
             </TouchableOpacity>
           )}
+
+          ItemSeparatorComponent={this.renderSeparator}
 
           keyExtractor={item => `${item.id}`}
         />
